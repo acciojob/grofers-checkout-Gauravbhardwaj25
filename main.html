@@ -1,45 +1,53 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-    <!-- the entire body must be written by student -->
-    <table style="width: 100%">
-    <caption>
-      Monthly savings
-    </caption>
-    <tr>
-      <th>Item</th>
-      <th>Prices in Rs</th>
-    </tr>
-    <tr>
-      <td class="item">Tea</td>
-      <td class="price">50</td>
-    </tr>
-    <tr>
-      <td class="item">Coffee</td>
-      <td class="price">70</td>
-    </tr>
-    <tr>
-      <td class="item">Biscuits</td>
-      <td class="price">100</td>
-    </tr>
-    <tr>
-      <td class="item">Rice</td>
-      <td class="price">130</td>
-    </tr>
-    <tr>
-      <td class="item">Milk</td>
-      <td class="price">50</td>
-    </tr>
-  </table>
-    <script type="text/javascript" src="./script.js">
-</script>
+    <table id="grocery-table" border="1">
+  <tr>
+    <td class="item">Rice</td>
+    <td class="prices">50</td>
+  </tr>
+  <tr>
+    <td class="item">Wheat</td>
+    <td class="prices">40</td>
+  </tr>
+  <tr>
+    <td class="item">Milk</td>
+    <td class="prices">30</td>
+  </tr>
+</table>
 
+<button onclick="calculateTotal()">Calculate Total</button>
+
+    <script>
+        function calculateTotal() {
+  // 1. सारी prices को ढूंढो
+  let priceElements = document.querySelectorAll(".prices");
+
+  let total = 0;
+
+  // 2. हर price को number में convert करके जोड़ो
+  priceElements.forEach(function(priceElement) {
+    total += parseFloat(priceElement.textContent);
+  });
+
+  // 3. नया row बनाओ
+  let table = document.getElementById("grocery-table");
+  let newRow = document.createElement("tr");
+
+  let totalCell = document.createElement("td");
+  totalCell.colSpan = 2; // दो कॉलम में फैलेगा
+  totalCell.style.fontWeight = "bold";
+  totalCell.textContent = "Total Price: ₹" + total;
+
+  newRow.appendChild(totalCell);
+  table.appendChild(newRow);
+}
+
+    </script>
 </body>
-
 </html>
